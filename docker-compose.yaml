@@ -40,7 +40,7 @@ services:
 
   twitter_crawler:
     container_name: polypus-twitter-twitter-crawler
-    image: twitter-crawler
+    image: brunneis/twitter-firehose
     volumes:
       - ./crawler.conf:/opt/polypus/crawler.conf
       - ./dicts:/opt/polypus/dicts
@@ -53,7 +53,7 @@ services:
 
   twitter_adapter:
     container_name: polypus-twitter-twitter-adapter
-    image: twitter-crawler-json-adapter
+    image: brunneis/twitter-firehose-json-adapter
     command: json_adapter.py -k kafka:9092 -i raw_tweets -o new_texts
     logging: *default-logging
     depends_on:
